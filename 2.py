@@ -1,23 +1,16 @@
-def find_common_participants(group1, group2, separator=","):
-    participants1 = group1.split(separator)
-    participants2 = group2.split(separator)
-
-    common_participants = list(set(participants1) & set(participants2))
-    common_participants.sort()
-    return common_participants
-
-
-participants_first_group = "Иванов|Петров|Сидоров"
-participants_second_group = "Петров|Сидоров|Смирнов"
-
-common = find_common_participants(participants_first_group, participants_second_group, "|")
-print(f"Общие участники: {common}")
-
-
-group1_comma = "Иванов,Петров,Сидоров"
-group2_comma = "Петров,Сидоров,Смирнов"
-
-common_comma = find_common_participants(group1_comma, group2_comma)
-print(f"Общие участники (с запятой): {common_comma}")
-
-
+import csv
+import json
+INPUT_FILENAME = "input.csv"
+OUTPUT_FILENAME = "output.json"
+def task() -> None:
+    with open(INPUT_FILENAME, 'r', encoding='utf-8') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        data = list(csv_reader)
+    with open(OUTPUT_FILENAME, 'w', encoding='utf-8') as json_file:
+        json.dump(data, json_file, ensure_ascii=False, indent=4)
+if __name__ == '__main__':
+    # Нужно для проверки
+    task()
+    with open(OUTPUT_FILENAME) as output_f:
+        for line in output_f:
+            print(line, end="")
