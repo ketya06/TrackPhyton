@@ -1,5 +1,4 @@
 import json
-
 def task() -> float:
     try:
         with open('data.json', 'r') as f:
@@ -39,8 +38,6 @@ def task() -> float:
                 "weight": 1
             }
         ]
-
     total_sum = sum(item.get("score", 0) * item.get("weight", 0) for item in data)
-
     return round(total_sum, 3)
 print(task())
